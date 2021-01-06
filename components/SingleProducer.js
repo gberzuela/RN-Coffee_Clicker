@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function SingleProducer({
-	producer: { id, qty, cps, price, unlocked },
+	producer: { id, qty, cps, price, multiPrice, refund },
 	handleBuyProducer,
+	isBuying,
+	quantity,
 }) {
 	const convertId = () => {
 		return id
@@ -12,20 +14,20 @@ export default function SingleProducer({
 			.join(' ');
 	};
 
-	const handlePress = () => {
-		console.log(`${id} was pressed`);
-	};
-
 	return (
 		<TouchableOpacity
 			style={styles.producer}
-			onPress={() => handleBuyProducer(id)}
+			onPress={() => handleBuyProducer(id, price, multiPrice, quantity)}
 		>
 			<View style={styles.content}>
 				<Text>{convertId()}</Text>
 				<Text>Quantity: {qty}</Text>
 				<Text>Coffee/second: {cps}</Text>
-				<Text>Price: {price}</Text>
+				{isBuying ? (
+					<Text>Price: {multiPrice > price ? multiPrice : price}</Text>
+				) : (
+					<Text>Refund: {refund}</Text>
+				)}
 			</View>
 		</TouchableOpacity>
 	);

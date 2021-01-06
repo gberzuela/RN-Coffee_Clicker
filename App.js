@@ -6,6 +6,7 @@ import {
 	View,
 	Image,
 	TouchableWithoutFeedback,
+	TouchableOpacity,
 	Modal,
 	Keyboard,
 	Alert,
@@ -52,16 +53,19 @@ class App extends Component {
 		});
 	};
 
-	handleBuyProducer = (producerId) => {
-		const valid = this.attemptToBuyProducer(producerId);
-		if (!valid) {
+	handleBuyProducer = async (producerId, price, multiPrice, quantity) => {
+		if (price > this.state.coffee || multiPrice > this.state.coffee) {
 			return Alert.alert('Warning!', 'Not enough coffee :c', [
-				{ text: 'Okay', onPress: () => console.log('Okay pressed') },
+				{ text: 'Okay' },
 			]);
+		}
+		let newProducer;
+		for (let i = 0; i < quantity; i++) {
+			newProducer = await this.attemptToBuyProducer(producerId);
 		}
 		this.setState({
 			producers: this.state.producers.map((producer) =>
-				producer.id === producerId ? valid : producer
+				producer.id === producerId ? newProducer : producer
 			),
 		});
 	};
@@ -90,21 +94,17 @@ class App extends Component {
 	getProducerById = (producerId) =>
 		this.state.producers.filter((producer) => producer.id === producerId)[0];
 
-	canAffordProducer = (producerId) =>
-		this.getProducerById(producerId).price <= this.state.coffee;
-
 	updatePrice = (oldPrice) => Math.floor(oldPrice * 1.25);
 
-	attemptToBuyProducer = (producerId) => {
-		if (this.canAffordProducer(producerId)) {
-			let producer = this.getProducerById(producerId);
-			producer.qty++;
-			this.setState({ coffee: this.state.coffee - producer.price });
-			producer.price = this.updatePrice(producer.price);
-			this.setState({ CPS: this.state.CPS + producer.cps });
-			return producer;
-		}
-		return false;
+	attemptToBuyProducer = async (producerId) => {
+		let producer = this.getProducerById(producerId);
+		producer.qty++;
+		await this.setState({
+			coffee: this.state.coffee - producer.price,
+			CPS: this.state.CPS + producer.cps,
+		});
+		producer.price = this.updatePrice(producer.price);
+		return producer;
 	};
 
 	render() {
@@ -135,12 +135,12 @@ class App extends Component {
 						<Text>{CPS} per sec</Text>
 					</View>
 
-					<TouchableWithoutFeedback onPress={this.handleCoffeePress}>
+					<TouchableOpacity onPress={this.handleCoffeePress}>
 						<Image
 							style={styles.image}
 							source={require('./assets/latte.png')}
 						/>
-					</TouchableWithoutFeedback>
+					</TouchableOpacity>
 				</View>
 
 				<MaterialIcons
@@ -178,12 +178,15 @@ const styles = StyleSheet.create({
 	},
 	modalContent: {
 		padding: 40,
-		flex: 1,
 	},
 	modalToggle: {
-		marginBottom: 10,
 		borderWidth: 1,
-		borderColor: '#f2f2f2',
+		elevation: 3,
+		shadowOffset: { width: 1, height: 1 },
+		shadowColor: '#333',
+		shadowOpacity: 0.3,
+		shadowRadius: 2,
+		backgroundColor: 'white',
 		padding: 10,
 		borderRadius: 10,
 		alignSelf: 'center',
