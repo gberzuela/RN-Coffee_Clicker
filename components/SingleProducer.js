@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	TouchableOpacity,
-	Pressable,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function SingleProducer({
 	producer: { id, qty, cps, price, unlocked },
