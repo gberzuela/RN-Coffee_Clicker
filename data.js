@@ -9,6 +9,7 @@ module.exports = {
 			unlocked: false,
 			cps: 1,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -18,6 +19,7 @@ module.exports = {
 			unlocked: false,
 			cps: 5,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -27,6 +29,7 @@ module.exports = {
 			unlocked: false,
 			cps: 10,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -36,6 +39,7 @@ module.exports = {
 			unlocked: false,
 			cps: 50,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -45,6 +49,7 @@ module.exports = {
 			unlocked: false,
 			cps: 100,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -54,6 +59,7 @@ module.exports = {
 			unlocked: false,
 			cps: 500,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -63,6 +69,7 @@ module.exports = {
 			unlocked: false,
 			cps: 1000,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -72,6 +79,7 @@ module.exports = {
 			unlocked: false,
 			cps: 5000,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -81,6 +89,7 @@ module.exports = {
 			unlocked: false,
 			cps: 10000,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -99,6 +108,7 @@ module.exports = {
 			unlocked: false,
 			cps: 100000,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 		{
@@ -108,6 +118,7 @@ module.exports = {
 			unlocked: false,
 			cps: 500000,
 			qty: 0,
+			multiPrice: 0,
 			refund: 0,
 		},
 	],
