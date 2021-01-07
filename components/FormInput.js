@@ -4,20 +4,20 @@ import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function FormInput({
+	iconName,
 	labelValue,
-	placeHolderText,
-	iconType,
+	placeholderText,
 	...rest
 }) {
 	return (
 		<View style={styles.inputContainer}>
 			<View style={styles.iconStyle}>
-				<Ionicons name="person-outline" size={24} color="black" />
+				<Ionicons name={iconName} size={24} color="black" />
 			</View>
 			<TextInput
 				style={styles.input}
 				value={labelValue}
-				placeholder={placeHolderTest}
+				placeholder={placeholderText}
 				placeholderTextColor="#666"
 				{...rest}
 			/>
