@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function SingleProducer({
+	producer,
 	producer: { id, qty, cps, price, multiPrice, refund },
 	handleBuyProducer,
+	handleSellProducer,
 	isBuying,
 	quantity,
 }) {
@@ -17,7 +19,11 @@ export default function SingleProducer({
 	return (
 		<TouchableOpacity
 			style={styles.producer}
-			onPress={() => handleBuyProducer(id, price, multiPrice, quantity)}
+			onPress={() =>
+				isBuying
+					? handleBuyProducer(id, price, multiPrice, quantity)
+					: handleSellProducer(producer, quantity > qty ? qty : quantity)
+			}
 		>
 			<View style={styles.content}>
 				<Text>{convertId()}</Text>

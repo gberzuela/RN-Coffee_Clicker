@@ -4,7 +4,11 @@ import { StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
 import SingleProducer from './SingleProducer';
 import BuyAndSell from './BuyAndSell';
 
-export default function ProducersList({ producers, handleBuyProducer }) {
+export default function ProducersList({
+	producers,
+	handleBuyProducer,
+	handleSellProducer,
+}) {
 	const [isBuying, setIsBuying] = useState(true);
 	const [quantity, setQuantity] = useState(1);
 	const [localProducers, setLocalProducers] = useState(producers);
@@ -38,7 +42,7 @@ export default function ProducersList({ producers, handleBuyProducer }) {
 				return producer;
 			})
 		);
-	}, [isBuying, quantity]);
+	}, [isBuying, quantity, producers]);
 
 	return (
 		<View style={styles.container}>
@@ -57,6 +61,7 @@ export default function ProducersList({ producers, handleBuyProducer }) {
 						key={item.id}
 						producer={item}
 						handleBuyProducer={handleBuyProducer}
+						handleSellProducer={handleSellProducer}
 						isBuying={isBuying}
 						quantity={quantity}
 					/>

@@ -29,6 +29,7 @@ class App extends Component {
 		};
 		this.handleCoffeePress = this.handleCoffeePress.bind(this);
 		this.handleBuyProducer = this.handleBuyProducer.bind(this);
+		this.handleSellProducer = this.handleSellProducer.bind(this);
 	}
 
 	componentDidMount() {
@@ -70,15 +71,33 @@ class App extends Component {
 		});
 	};
 
+	handleSellProducer = (newProducer, quantity) => {
+		this.setState({
+			coffee: this.state.coffee + newProducer.refund,
+			CPS: this.state.CPS - quantity * newProducer.cps,
+		});
+		newProducer.qty -= quantity;
+		newProducer.refund = 0;
+		newProducer.price = newProducer.startPrice;
+		for (let i = 0; i < newProducer.qty; i++) {
+			newProducer.price = this.updatePrice(newProducer.price);
+		}
+		this.setState({
+			producers: this.state.producers.map((producer) =>
+				producer.id === newProducer.id ? newProducer : producer
+			),
+		});
+	};
+
 	timeOut = () =>
 		setInterval(async () => {
 			const { coffee, CPS, producers } = this.state;
 			await Promise.all([
-				await this.setState({ coffee: coffee + CPS }),
-				await this.setState({
+				this.setState({ coffee: coffee + CPS }),
+				this.setState({
 					producers: this.unlockProducers(),
 				}),
-				await this.setState({
+				this.setState({
 					unlockedProducers: producers.filter((producer) => producer.unlocked),
 				}),
 			]);
@@ -124,6 +143,7 @@ class App extends Component {
 							<ProducersList
 								producers={unlockedProducers}
 								handleBuyProducer={this.handleBuyProducer}
+								handleSellProducer={this.handleSellProducer}
 							/>
 						</View>
 					</TouchableWithoutFeedback>
@@ -181,7 +201,6 @@ const styles = StyleSheet.create({
 	},
 	modalToggle: {
 		borderWidth: 1,
-		elevation: 3,
 		shadowOffset: { width: 1, height: 1 },
 		shadowColor: '#333',
 		shadowOpacity: 0.3,
