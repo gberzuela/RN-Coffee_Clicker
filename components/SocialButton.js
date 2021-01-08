@@ -9,7 +9,7 @@ import {
 
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function SocialButton({ ...rest }) {
+export default function SocialButton({ buttonTitle, ...rest }) {
 	return (
 		<TouchableOpacity style={styles.buttonContainer} {...rest}>
 			<View styles={styles.iconWrapper}>
@@ -17,7 +17,7 @@ export default function SocialButton({ ...rest }) {
 					style={styles.icon}
 					name="google"
 					size={22}
-					color="black"
+					color="#de4d41"
 				/>
 			</View>
 			<View style={styles.btnTxtWrapper}>
@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
 		padding: 10,
 		width: '100%',
 		height: Dimensions.get('screen').height / 15,
-		backgroundColor: '#',
+		backgroundColor: '#f5e7ea',
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderRadius: 3,
+		flexDirection: 'row',
 	},
 	btnTxtWrapper: {
 		flex: 1,
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
 	buttonText: {
 		fontSize: 18,
 		fontWeight: 'bold',
-		color: '#ffffff',
+		color: '#de4d41',
 	},
 	icon: {
 		fontWeight: 'bold',

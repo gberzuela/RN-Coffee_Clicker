@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-// import SocialButton from '../components/SocialButton';
+import SocialButton from '../components/SocialButton';
 
 export default function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState('');
@@ -39,14 +39,19 @@ export default function LoginScreen({ navigation }) {
 				onPress={() => alert('Sign in clicked')}
 			/>
 
-			<TouchableOpacity style={styles.forgotButton}>
-				<Text style={styles.navButtonText}>Forgot Password?</Text>
-			</TouchableOpacity>
+			<SocialButton
+				buttonTitle="Sign In with Google"
+				onPress={() => console.log('Signing in with Google')}
+			/>
 
 			<TouchableOpacity
 				style={styles.forgotButton}
-				onPress={() => navigation.navigate('Sign up')}
+				onPress={() => console.log('Forgot password')}
 			>
+				<Text style={styles.navButtonText}>Forgot Password?</Text>
+			</TouchableOpacity>
+
+			<TouchableOpacity onPress={() => navigation.navigate('Sign up')}>
 				<Text style={styles.navButtonText}>Don't have an account?</Text>
 			</TouchableOpacity>
 		</View>
@@ -61,7 +66,8 @@ const styles = StyleSheet.create({
 		paddingTop: 150,
 	},
 	forgotButton: {
-		marginVertical: 35,
+		marginTop: 50,
+		marginBottom: 20,
 	},
 	logo: {
 		height: 150,
