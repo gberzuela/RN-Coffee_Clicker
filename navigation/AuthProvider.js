@@ -16,11 +16,9 @@ export const AuthProvider = ({ children }) => {
 					try {
 						await firebase.auth().signInWithEmailAndPassword(email, password);
 					} catch (error) {
-						Alert.alert('', 'Incorrect email or password', [
-							{
-								text: 'Ok',
-							},
-						]);
+						Alert.alert('', 'Incorrect email or password', {
+							text: 'Ok',
+						});
 					}
 				},
 				register: async (email, password) => {
@@ -29,12 +27,12 @@ export const AuthProvider = ({ children }) => {
 							.auth()
 							.createUserWithEmailAndPassword(email, password);
 					} catch (error) {
-						console.log('register error -->', error.message);
+						Alert.alert('', error.message, { text: 'Ok' });
 					}
 				},
 				logout: async () => {
 					try {
-						await firebase.auth.signOut();
+						await firebase.auth().signOut();
 					} catch (error) {
 						console.log('logout error -->', error.message);
 					}
