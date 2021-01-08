@@ -1,13 +1,13 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './AuthProvider';
+import Routes from './Routes';
 
-import AuthStack from './AuthStack';
-
-export default function Navigator() {
+const Providers = () => {
 	return (
-		<NavigationContainer>
-			<AuthStack />
-		</NavigationContainer>
+		<AuthProvider>
+			<Routes />
+		</AuthProvider>
 	);
-}
+};
+
+export default Providers;
