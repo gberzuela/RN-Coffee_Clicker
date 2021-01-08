@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -7,15 +7,19 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 	Image,
+	Alert,
 } from 'react-native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import { AuthContext } from '../navigation/AuthProvider';
 
 export default function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+
+	const { register } = useContext(AuthContext);
 
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -51,7 +55,13 @@ export default function LoginScreen({ navigation }) {
 
 				<FormButton
 					buttonTitle="Sign Up"
-					onPress={() => alert('Sign in clicked')}
+					onPress={() => {
+						if (password !== confirmPassword) {
+							Alert.alert('', "Passwords don't match!", { text: 'Ok' });
+						} else {
+							register(email, password);
+						}
+					}}
 				/>
 
 				<TouchableOpacity onPress={() => navigation.navigate('Login')}>
