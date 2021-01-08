@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
 	},
 	producer: {
 		borderRadius: 6,
-		elevation: 3, // distance between the card and the back of the screen
 		backgroundColor: '#fff',
 		shadowOffset: { width: 1, height: 1 }, // basically a box shadow
 		shadowColor: '#333',
