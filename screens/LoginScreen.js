@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -7,15 +7,19 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 	Image,
+	Alert,
 } from 'react-native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
+import { AuthContext } from '../navigation/AuthProvider';
 
 export default function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const { login } = useContext(AuthContext);
 
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -43,7 +47,7 @@ export default function LoginScreen({ navigation }) {
 
 				<FormButton
 					buttonTitle="Sign In"
-					onPress={() => alert('Sign in clicked')}
+					onPress={() => login(email, password)}
 				/>
 
 				<SocialButton
@@ -53,7 +57,11 @@ export default function LoginScreen({ navigation }) {
 
 				<TouchableOpacity
 					style={styles.forgotButton}
-					onPress={() => console.log('Forgot password')}
+					onPress={() =>
+						Alert.alert('', "Sounds like a personal problem :'c", {
+							text: 'Ok',
+						})
+					}
 				>
 					<Text style={styles.navButtonText}>Forgot Password?</Text>
 				</TouchableOpacity>
