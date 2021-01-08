@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as firebase from 'firebase';
 
 import AuthStack from './AuthStack';
+import GameStack from './GameStack';
 import { AuthContext } from './AuthProvider';
 
 const Routes = () => {
@@ -25,7 +26,7 @@ const Routes = () => {
 
 	return (
 		<NavigationContainer>
-			<AuthStack />
+			{user ? <GameStack /> : <AuthStack />}
 		</NavigationContainer>
 	);
 };

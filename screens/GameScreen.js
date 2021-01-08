@@ -157,7 +157,7 @@ class GameScreen extends Component {
 					<TouchableOpacity onPress={this.handleCoffeePress}>
 						<Image
 							style={styles.image}
-							source={require('./assets/latte.png')}
+							source={require('../assets/latte.png')}
 						/>
 					</TouchableOpacity>
 				</View>
@@ -169,8 +169,6 @@ class GameScreen extends Component {
 					color="black"
 					onPress={() => this.setState({ modalOpen: true })}
 				/>
-
-				<StatusBar style="auto" />
 			</View>
 		);
 	}
