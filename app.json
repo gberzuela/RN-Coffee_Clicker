@@ -17,7 +17,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.coffee-clicker",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.465650605351-pu7q1sbm7i43bqjjhn882osvc3aq8jbs"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,3 +37,4 @@
     }
   }
 }
+
