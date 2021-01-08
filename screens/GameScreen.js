@@ -55,9 +55,7 @@ class GameScreen extends Component {
 
 	handleBuyProducer = async (producerId, price, multiPrice, quantity) => {
 		if (price > this.state.coffee || multiPrice > this.state.coffee) {
-			return Alert.alert('Warning!', 'Not enough coffee :c', [
-				{ text: 'Okay' },
-			]);
+			return Alert.alert('Warning!', 'Not enough coffee :c', { text: 'Ok' });
 		}
 		let newProducer;
 		for (let i = 0; i < quantity; i++) {
